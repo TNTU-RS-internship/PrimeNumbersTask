@@ -3,23 +3,24 @@ package primenumbers;
 public class PrimeChecker {
 
     public boolean isValidNumber(String input) throws IllegalArgumentException {
-        int number;
+        long number;
 
         try {
-            number = Integer.parseInt(input);
+            number = Long.parseLong(input);
         }
         catch (NumberFormatException e) {
-            throw new IllegalArgumentException("Input is not a number");
+            throw new IllegalArgumentException("Input is not a natural number");
+        }
+
+        if (number < 2 || number > 1_000_000_000_000L) {
+            throw new IllegalArgumentException("Number must be positive and in (2 - 10^12) range");
         }
 
         return isPrimeNumber(number);
     }
 
-    public boolean isPrimeNumber(int number) {
-        if (number <= 1) {
-            return false;
-        }
-        for (int i = 2; i * i <= number; i++) {
+    public boolean isPrimeNumber(long number) {
+        for (long i = 2; i * i <= number; i++) {
             if (number % i == 0) {
                 return false;
             }
