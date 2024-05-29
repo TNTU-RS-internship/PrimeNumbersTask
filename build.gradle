@@ -16,4 +16,22 @@ dependencies {
 
 test {
     useJUnitPlatform()
+    testLogging {
+        events "passed", "skipped", "failed", "standardOut", "standardError"
+        showStandardStreams = true
+        exceptionFormat = "full"
+    }
+
+    ext.startTime = 0
+
+    beforeTest { desc ->
+        startTime = System.currentTimeMillis()
+    }
+
+    afterTest { desc, result ->
+        long duration = System.currentTimeMillis() - startTime
+        println "\nTest: ${desc.name}"
+        println "Result: ${result.resultType}"
+        println "Duration: ${duration} ms\n"
+    }
 }
