@@ -33,6 +33,29 @@ class PrimeCheckerTest {
     }
 
     @Test
+    void isPrimeNumber_with_2_147_483_647() {
+        boolean prime = checker.isPrimeNumber(2147483647);
+        Assertions.assertTrue(prime);
+    }
+    @Test
+    void isPrimeNumber_with_999999000001L() {
+        boolean prime = checker.isPrimeNumber(999999000001L);
+        Assertions.assertTrue(prime);
+    }
+
+    @Test
+    void isPrimeNumber_with_67280421310721L() {
+        boolean prime = checker.isPrimeNumber(67280421310721L);
+        Assertions.assertTrue(prime);
+    }
+
+    @Test
+    void isPrimeNumber_with_1000000000000() {
+        boolean prime = checker.isPrimeNumber(1_000_000_000_000_000L);
+        Assertions.assertFalse(prime);
+    }
+
+    @Test
     void isValidNumber_with_one() {
         boolean prime = checker.isPrimeNumber(1);
         Assertions.assertThrows(IllegalArgumentException.class, () -> checker.isValidNumber("1"));
